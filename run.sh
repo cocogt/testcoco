@@ -1,12 +1,14 @@
 #!/bin/bash
 # -*- coding: UTF-8 -*-
 
-set -x
+#set -x
+
+
 
 if [[ $1 == "-a" ]]
 then
 	echo "start AnalyzerTopology named" $2
-	storm jar target/ever-1.0-SNAPSHOT.jar com.persist.VideoAnalyzer analyzer_config.json $2
+	storm jar Grabber.jar com.persist.VideoAnalyzer analyzer_config.json $2
 elif [[ $1 == "-d" ]]
 then
 	echo "start DetectTopology named" $2
@@ -14,19 +16,19 @@ then
 elif [[ $1 == "-g" ]]
 then
 	echo "start GrabTopology named" $2
-	storm jar target/ever-1.0-SNAPSHOT.jar com.persist.VideoGrabber grabber_config.json $2
+	storm jar Grabber.jar com.persist.VideoGrabber grabber_config.json $2
 elif [[ $1 == "-vg" ]]
 then
 	echo "start VideoGrabTopology named" $2
-	storm jar target/ever-1.0-SNAPSHOT.jar com.xrr.VideoGrab videograb_config.json $2
+	storm jar Grabber.jar com.xrr.VideoGrab videograb_config.json $2
 elif [[ $1 == "-ic" ]]
 then
 	echo "start ImageCheck ServiceTopology named" $2
-	storm jar target/ever-1.0-SNAPSHOT.jar com.persist.ImageCheck check.json $2
+	storm jar Grabber.jar com.persist.ImageCheck check.json $2
 elif [[ $1 == "-iq" ]]
 then
 	echo "start ImageQuery ..."
-	storm jar target/ever-1.0-SNAPSHOT.jar com.persist.ImageQuery localhost 3772 image-check url_file.txt
+	storm jar Grabber.jar com.persist.ImageQuery localhost 3772 image-check url_file.txt
 elif [[ $1 == "-rebuild" ]]
 then	echo "------rebuild this project..."
 	mvn clean install -DskipTests=true
